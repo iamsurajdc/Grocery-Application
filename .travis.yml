@@ -1,12 +1,14 @@
 sudo: required
+
 addons: 
   chrome: stable
+
 language: node_js
+
 node_js:
   - "12.2.0"
-script: echo "Running tests against $(node -v) ..."
-cache: 
-    - npm
+
+  script: echo "Running tests against $(node -v) ..."
 
 branches: 
  - only:
@@ -21,7 +23,20 @@ before_script:
 script: 
   - npm install
   - ng build --prod
+cache: 
+  - npm
 
-# script: echo "Winjit Build Succeded "
 after_success: 
-  - firebase deploy --token $FIREBASE_TOKEN
+  - deploy:  
+      - firebase deploy --token $FIREBASE_TOKEN
+
+script: 
+  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/
+after_success: 
+  deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  on:
+    branch: master
