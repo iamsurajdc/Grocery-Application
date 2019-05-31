@@ -1,14 +1,12 @@
 sudo: required
-
 addons: 
   chrome: stable
-
 language: node_js
-
 node_js:
   - "12.2.0"
-
-  script: echo "Running tests against $(node -v) ..."
+script: echo "Running tests against $(node -v) ..."
+cache: 
+    - npm
 
 branches: 
  - only:
@@ -18,22 +16,18 @@ before_install: echo "Before Dependancy Install By Suraj..."
 
 before_script: 
     - npm install -g @angular/cli
-    - npm install -g firebase-tools 
+    # - npm install -g firebase-tools
 
 script: 
-  - npm install
+  - npm ci
+  - ng build --prod --base-href https://iansurajdc.github.io/Grocery-Application/
   # - ng build --prod
-  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/
-
-cache: 
-  - npm
 
 # after_success: 
-#   - deploy:  
-#       - firebase deploy --token $FIREBASE_TOKEN
+#   - firebase deploy --token $FIREBASE_TOKEN
 
-after_success:
-  deploy:
+# Deploy To Github Pages
+deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
