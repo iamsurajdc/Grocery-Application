@@ -13,7 +13,7 @@ cache:
     - npm
 
 branches: 
- - only:
+ only:
     - master
 
 before_install: echo "Before Dependancy Install By Suraj..."
@@ -36,5 +36,7 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist
-  on:
-    branch: master
+  keep_history: true
+  target_branch: master
+  # on:
+  #   target_branch: master
