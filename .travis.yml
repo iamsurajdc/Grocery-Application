@@ -22,17 +22,17 @@ before_script:
 
 script: 
   - npm install
-  - ng build --prod
+  # - ng build --prod
+  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/
+
 cache: 
   - npm
 
-after_success: 
-  - deploy:  
-      - firebase deploy --token $FIREBASE_TOKEN
+# after_success: 
+#   - deploy:  
+#       - firebase deploy --token $FIREBASE_TOKEN
 
 after_success:
-  script: 
-  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/ 
   deploy:
   provider: pages
   skip_cleanup: true
