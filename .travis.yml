@@ -20,7 +20,7 @@ before_script:
 
 script: 
   - npm ci
-  - ng build --prod --base-href https://iansurajdc.github.io/Grocery-Application/
+  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/
   # - ng build --prod
 
 # after_success: 
