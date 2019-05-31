@@ -30,9 +30,9 @@ after_success:
   - deploy:  
       - firebase deploy --token $FIREBASE_TOKEN
 
-script: 
-  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/
-after_success: 
+after_success:
+  script: 
+  - ng build --prod --base-href https://iamsurajdc.github.io/Grocery-Application/ 
   deploy:
   provider: pages
   skip_cleanup: true
